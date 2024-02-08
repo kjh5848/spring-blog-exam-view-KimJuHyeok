@@ -21,27 +21,19 @@ public class BoardController {
     @GetMapping("/")
     public String index(@RequestParam(defaultValue = "0")int page, HttpServletRequest request) {
         List<Board> boardList = boardRepository.findAll(page);
-        request.setAttribute("boardList", boardList);
-
         int currentPage = page;
         int nextPage = currentPage +1;
         int prevPage = currentPage -1;
-
-        request.setAttribute("nextPage", nextPage);
-        request.setAttribute("prevPage", prevPage);
-
         boolean first = PagingUtil.isFirst(currentPage);
         boolean last = PagingUtil.isLast(currentPage,boardRepository.count());
+        List<Integer> pageNumbers = PagingUtil.getPageNumbers(currentPage+1, PagingUtil.getTotalPageCount(boardRepository.count()));
 
+        request.setAttribute("boardList", boardList);
         request.setAttribute("first",first);
         request.setAttribute("last",last);
-
-        List<Integer> pageNumbers = PagingUtil.getPageNumbers(currentPage+1, PagingUtil.getTotalPageCount(boardRepository.count()));
         request.setAttribute("pageNumber", pageNumbers);
-
-        boolean Active = PagingUtil.isActive(currentPage, pageNumbers);
-        request.setAttribute("Active", Active);
-
+        request.setAttribute("nextPage", nextPage);
+        request.setAttribute("prevPage", prevPage);
 
         return "index";
     }

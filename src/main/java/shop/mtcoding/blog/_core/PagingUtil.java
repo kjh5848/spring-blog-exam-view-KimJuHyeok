@@ -5,19 +5,8 @@ import java.util.List;
 
 public class PagingUtil {
 
-    //페이지 번호 엑티브
-    public static boolean isActive(int currentPage, List<Integer> pageNumbers) {
-        for (int pageNumber : pageNumbers) {
-            System.out.println("pageNumber = " + pageNumber);
-            // 현재 페이지 번호와 비교하는 로직
-            if (pageNumber == currentPage) {
-                // 현재 페이지인 경우 처리
-                System.out.println("현재 페이지: " + pageNumber);
-                return true;
-            }
-        }
-        return false;
-    }
+
+
 
     //페이지 번호
     public static List<Integer> getPageNumbers(int currentPage, int totalPageCount) {

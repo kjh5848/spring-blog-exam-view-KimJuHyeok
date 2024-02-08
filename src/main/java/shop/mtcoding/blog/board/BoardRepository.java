@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import shop.mtcoding.blog._core.Constant;
 
-import java.math.BigInteger;
 import java.util.List;
 
 @Repository
@@ -32,7 +31,6 @@ public class BoardRepository {
         query.setParameter(2, Constant.PAGING_COUNT);
 
         return query.getResultList();
-
     }
 
     @Transactional
